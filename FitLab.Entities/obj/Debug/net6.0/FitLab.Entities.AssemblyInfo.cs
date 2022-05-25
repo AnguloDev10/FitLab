@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("FitLab.Entities")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Fitlab.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("FitLab.Entities")]
-[assembly: System.Reflection.AssemblyTitleAttribute("FitLab.Entities")]
+[assembly: System.Reflection.AssemblyProductAttribute("Fitlab.Entities")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Fitlab.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
