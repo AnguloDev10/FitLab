@@ -27,7 +27,17 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
+                "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj"
+              },
+              "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj": {
+                "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj"
+              },
+              "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+                "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +50,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -59,6 +83,188 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
+        "projectName": "FitLab.DataAccess",
+        "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+        "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+                "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj",
+        "projectName": "FitLab.Dto",
+        "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj",
+        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+        "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
+        "projectName": "Fitlab.Entities",
+        "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
+        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+        "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
