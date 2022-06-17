@@ -37,11 +37,17 @@ namespace FitLab.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
 
                     b.ToTable("Accounts");
                 });
@@ -59,6 +65,9 @@ namespace FitLab.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -68,7 +77,61 @@ namespace FitLab.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProfileId");
+
                     b.ToTable("Complaints");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Diet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("Diets");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Experience", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("Experiences");
                 });
 
             modelBuilder.Entity("Fitlab.Entities.Profile", b =>
@@ -78,9 +141,6 @@ namespace FitLab.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -100,6 +160,11 @@ namespace FitLab.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<long>("Phone")
                         .HasColumnType("bigint");
 
@@ -110,27 +175,226 @@ namespace FitLab.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId")
-                        .IsUnique();
-
                     b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("Fitlab.Entities.Profile", b =>
+            modelBuilder.Entity("Fitlab.Entities.Progress", b =>
                 {
-                    b.HasOne("Fitlab.Entities.Account", "Account")
-                        .WithOne("Profile")
-                        .HasForeignKey("Fitlab.Entities.Profile", "AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Account");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("Progresses");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Schedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("EndAt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StartAt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("Schedules");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Session", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("EndAt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StartAt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Subscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaxSessions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("Subscriptions");
                 });
 
             modelBuilder.Entity("Fitlab.Entities.Account", b =>
                 {
-                    b.Navigation("Profile")
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithOne("Account")
+                        .HasForeignKey("Fitlab.Entities.Account", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Complaint", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithMany("Complaints")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Diet", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Session", "Session")
+                        .WithMany("Diets")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Experience", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithMany("Experiences")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Progress", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Session", "Session")
+                        .WithMany("Progresses")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Schedule", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithMany("Schedules")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Session", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithMany("Sessions")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Subscription", b =>
+                {
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Profile", b =>
+                {
+                    b.Navigation("Account")
+                        .IsRequired();
+
+                    b.Navigation("Complaints");
+
+                    b.Navigation("Experiences");
+
+                    b.Navigation("Schedules");
+
+                    b.Navigation("Sessions");
+
+                    b.Navigation("Subscriptions");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Session", b =>
+                {
+                    b.Navigation("Diets");
+
+                    b.Navigation("Progresses");
                 });
 #pragma warning restore 612, 618
         }

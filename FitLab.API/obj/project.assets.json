@@ -737,6 +737,23 @@
         "runtime": {
           "bin/placeholder/Fitlab.Entities.dll": {}
         }
+      },
+      "FitLab.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FitLab.DataAccess": "1.0.0",
+          "FitLab.Dto": "1.0.0",
+          "Fitlab.Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
+        },
+        "compile": {
+          "bin/placeholder/FitLab.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FitLab.Services.dll": {}
+        }
       }
     }
   },
@@ -2096,12 +2113,18 @@
       "type": "project",
       "path": "../Fitlab.Entities/Fitlab.Entities.csproj",
       "msbuildProject": "../Fitlab.Entities/Fitlab.Entities.csproj"
+    },
+    "FitLab.Services/1.0.0": {
+      "type": "project",
+      "path": "../FitLab.Services/FitLab.Services.csproj",
+      "msbuildProject": "../FitLab.Services/FitLab.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "FitLab.DataAccess >= 1.0.0",
       "FitLab.Dto >= 1.0.0",
+      "FitLab.Services >= 1.0.0",
       "Fitlab.Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.5",
@@ -2144,6 +2167,9 @@
             },
             "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
               "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+            },
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Services\\FitLab.Services.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Services\\FitLab.Services.csproj"
             }
           }
         }

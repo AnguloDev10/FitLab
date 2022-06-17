@@ -23,5 +23,6 @@ namespace Fitlab.Entities
 
         [Required]
         public int UserId { get; set; }
+        public  Profile Profile { get; set; }
     }
 }

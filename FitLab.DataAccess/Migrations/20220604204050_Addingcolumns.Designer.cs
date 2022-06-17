@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLab.DataAccess.Migrations
 {
     [DbContext(typeof(FitLabDbContext))]
-    [Migration("20220601044305_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20220604204050_Addingcolumns")]
+    partial class Addingcolumns
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,11 +39,17 @@ namespace FitLab.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
 
                     b.ToTable("Accounts");
                 });
@@ -81,9 +87,6 @@ namespace FitLab.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
@@ -102,6 +105,11 @@ namespace FitLab.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<long>("Phone")
                         .HasColumnType("bigint");
 
@@ -112,26 +120,23 @@ namespace FitLab.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId")
-                        .IsUnique();
-
                     b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("Fitlab.Entities.Profile", b =>
-                {
-                    b.HasOne("Fitlab.Entities.Account", "Account")
-                        .WithOne("Profile")
-                        .HasForeignKey("Fitlab.Entities.Profile", "AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Fitlab.Entities.Account", b =>
                 {
-                    b.Navigation("Profile")
+                    b.HasOne("Fitlab.Entities.Profile", "Profile")
+                        .WithOne("Account")
+                        .HasForeignKey("Fitlab.Entities.Account", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Fitlab.Entities.Profile", b =>
+                {
+                    b.Navigation("Account")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

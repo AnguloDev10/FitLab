@@ -10,6 +10,7 @@
         "dependencies": {
           "FitLab.DataAccess": "1.0.0",
           "FitLab.Dto": "1.0.0",
+          "FitLab.Services": "1.0.0",
           "Fitlab.Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5",
@@ -503,6 +504,16 @@
         "runtime": {
           "Fitlab.Entities.dll": {}
         }
+      },
+      "FitLab.Services/1.0.0": {
+        "dependencies": {
+          "FitLab.DataAccess": "1.0.0",
+          "FitLab.Dto": "1.0.0",
+          "Fitlab.Entities": "1.0.0"
+        },
+        "runtime": {
+          "FitLab.Services.dll": {}
+        }
       }
     }
   },
@@ -866,6 +877,11 @@
       "sha512": ""
     },
     "Fitlab.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FitLab.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -20,6 +20,7 @@
     <ProjectReference Include="..\FitLab.DataAccess\FitLab.DataAccess.csproj" />
     <ProjectReference Include="..\FitLab.Dto\FitLab.Dto.csproj" />
     <ProjectReference Include="..\Fitlab.Entities\Fitlab.Entities.csproj" />
+    <ProjectReference Include="..\FitLab.Services\FitLab.Services.csproj" />
   </ItemGroup>
 
 </Project>
