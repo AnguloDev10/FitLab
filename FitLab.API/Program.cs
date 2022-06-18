@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,8 +15,6 @@ builder.Services.AddDbContext<FitLabDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
     });
 
-
-builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
 
 builder.Services.AddEndpointsApiExplorer();
