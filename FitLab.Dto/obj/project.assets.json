@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Fitlab.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Fitlab.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Fitlab.Entities.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Fitlab.Entities/1.0.0": {
+      "type": "project",
+      "path": "../Fitlab.Entities/Fitlab.Entities.csproj",
+      "msbuildProject": "../Fitlab.Entities/Fitlab.Entities.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Fitlab.Entities >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Ryzen\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

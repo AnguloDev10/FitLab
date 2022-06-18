@@ -1,4 +1,5 @@
 using FitLab.DataAccess;
+using FitLab.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -6,12 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers();
 builder.Services.AddDbContext<FitLabDbContext>(options => 
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
     });
+
+
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
@@ -27,6 +32,14 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.MapControllers();
+
+
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:4200");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
 
 
 app.Run();

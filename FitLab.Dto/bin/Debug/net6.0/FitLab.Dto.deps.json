@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "FitLab.Dto/1.0.0": {
+        "dependencies": {
+          "Fitlab.Entities": "1.0.0"
+        },
         "runtime": {
           "FitLab.Dto.dll": {}
+        }
+      },
+      "Fitlab.Entities/1.0.0": {
+        "runtime": {
+          "Fitlab.Entities.dll": {}
         }
       }
     }
   },
   "libraries": {
     "FitLab.Dto/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fitlab.Entities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

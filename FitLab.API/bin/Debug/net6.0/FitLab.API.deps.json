@@ -496,6 +496,9 @@
         }
       },
       "FitLab.Dto/1.0.0": {
+        "dependencies": {
+          "Fitlab.Entities": "1.0.0"
+        },
         "runtime": {
           "FitLab.Dto.dll": {}
         }
@@ -509,7 +512,9 @@
         "dependencies": {
           "FitLab.DataAccess": "1.0.0",
           "FitLab.Dto": "1.0.0",
-          "Fitlab.Entities": "1.0.0"
+          "Fitlab.Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
         },
         "runtime": {
           "FitLab.Services.dll": {}

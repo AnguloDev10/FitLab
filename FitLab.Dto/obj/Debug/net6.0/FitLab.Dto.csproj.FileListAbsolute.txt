@@ -10,3 +10,6 @@ E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\obj\Debug\net6.0\FitLab.
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\obj\Debug\net6.0\refint\FitLab.Dto.dll
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\obj\Debug\net6.0\FitLab.Dto.pdb
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\obj\Debug\net6.0\ref\FitLab.Dto.dll
+E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\bin\Debug\net6.0\Fitlab.Entities.dll
+E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\bin\Debug\net6.0\Fitlab.Entities.pdb
+E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\FitLab.Dto\obj\Debug\net6.0\FitLab.Dto.csproj.CopyComplete

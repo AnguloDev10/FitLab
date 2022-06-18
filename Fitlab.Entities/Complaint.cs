@@ -15,7 +15,7 @@ namespace Fitlab.Entities
         public int Id { get; set; }
 
         [Required]
-        public string Subject { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [StringLength(500)]
