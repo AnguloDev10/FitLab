@@ -72,9 +72,6 @@ namespace FitLab.DataAccess.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");

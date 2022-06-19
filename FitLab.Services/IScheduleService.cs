@@ -1,4 +1,5 @@
 ﻿using Fitlab.Entities;
+using FitLab.Dto.Request;
 using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace FitLab.Services
 {
     public interface IScheduleService
     {
-        Task<IEnumerable<Schedule>> ListAsync();
+        Task<List<Schedule>> ListAsync();
 
-        Task<IEnumerable<Schedule>> ListByUserIdAsync(int userId);
+        Task<List<Schedule>> ListByUserIdAsync(int userId);
 
-        Task<ScheduleResponse> GetByIdAsync(int id);
-        Task<ScheduleResponse> SaveAsync(Schedule schedule);
-        Task<ScheduleResponse> UpdateAsync(int id, Schedule schedule);
+        Task<Schedule> GetByIdAsync(int id);
+        Task Create(ScheduleDTO schedule);
+        Task Update(int id, ScheduleDTO schedule);
     }
 }

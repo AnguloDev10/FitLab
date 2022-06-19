@@ -1,6 +1,7 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
 using FitLab.Dto.Request;
+using FitLab.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,11 @@ namespace FitLab.API.Controller
     public class ProfileController:ControllerBase
     {
         private readonly FitLabDbContext _context;
-     
-        public ProfileController(FitLabDbContext context)
+        private readonly IProfileService _profileService;
+        public ProfileController(FitLabDbContext context, IProfileService profileService)
         {
             _context = context;
+            _profileService = profileService;
         }
         //POST
         [HttpPost]
@@ -28,8 +30,7 @@ namespace FitLab.API.Controller
 
             try
             {
-               _context.Profiles.Add(profile);
-                await _context.SaveChangesAsync();
+                _profileService.Create(profile);
 
                 account.UserName = profile.Email;
                 account.Password = profile.Password;
@@ -56,8 +57,7 @@ namespace FitLab.API.Controller
             entity.Name = request.Name;
             entity.Age = request.Age;
             entity.LastName = request.LastName;
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _profileService.Update(entity);
             return Ok(new
             {
                 Id = id
@@ -78,5 +78,12 @@ namespace FitLab.API.Controller
             
             return Ok(entity);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Profile>>> Get()
+        {
+            return await _profileService.ListAsync();
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
-using FitLab.Dto.Response;
+using FitLab.Dto.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,86 +13,68 @@ namespace FitLab.Services
     public class DietService : IDietService
     {
         private readonly FitLabDbContext _context;
-
         public DietService(FitLabDbContext context)
         {
             _context = context;
         }
 
-
-        public async Task<DietResponse> DeleteAsync(int id)
+        public async Task<Diet> Create(DietDTO diet)
         {
-            var existingDiet = await _context.Diets.FindAsync(id);
+            Diet diet1 = new Diet {Description = diet.Description,SessionId=diet.SessionId,Title=diet.Title};
+            try
+            {
+                _context.Diets.Add(diet1);
+                await _context.SaveChangesAsync();
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Algo salio mal");
+            }
+            return diet1;
+        }
+
+        public async Task Delete(int id)
+        {
+            var existingDiet = _context.Diets.FirstOrDefault(c => c.Id == id);
             if (existingDiet == null)
-                return new DietResponse("Diet not found");
-
+                throw new Exception("No se encontro");
             try
             {
                 _context.Diets.Remove(existingDiet);
                 await _context.SaveChangesAsync();
-
-                return new DietResponse(existingDiet);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new DietResponse($"An error ocurred while deleting diet: {ex.Message}");
+                throw new Exception("Hubo un error");
             }
         }
 
-        public async Task<DietResponse> GetByIdAsync(int id)
+        public async Task<Diet> GetByIdAsync(int id)
         {
-            var existingDiet = await _context.Diets.FindAsync(id);
-            if (existingDiet == null)
-                return new DietResponse("Diet not found");
-            return new DietResponse(existingDiet);
+            return await _context.Diets.Where(g => g.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Diet>> ListAsync()
+        {
+            return await _context.Diets.ToListAsync();
+        }
+
+        public async Task<Diet> ListBySessionIdAsync(int sessionId)
+        {
+            return await _context.Diets.Where(g => g.SessionId == sessionId).FirstOrDefaultAsync();
 
         }
 
-        public async Task<IEnumerable<Diet>> ListAsync()
+        public async Task Update(int id, DietDTO diet)
         {
-            return await _context.Diets.Include(p => p.Session).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Diet>> ListBySessionIdAsync(int sessionId)
-        {
-            return await _context.Diets.Where(p => p.SessionId == sessionId).Include(p => p.Session).ToListAsync();
-        }
-
-        public async Task<DietResponse> SaveAsync(Diet diet)
-        {
-            try 
-            { 
-               await _context.Diets.AddAsync(diet);
-               await _context.SaveChangesAsync();
-                return new DietResponse(diet);
-            }
-            catch (Exception ex)
-            {
-                return new DietResponse($"An error ocurred while saving diet: {ex.Message}");
-            }
-
-        }
-
-        public async Task<DietResponse> UpdateAsync(int id, Diet diet)
-        {
-            var existingDiet = await _context.Diets.FindAsync(id);
-            if (existingDiet == null)
-                return new DietResponse("Diet not found");
-
-            existingDiet.Description = diet.Description;
-
-            try
-            {
-                _context.Diets.Update(diet);
-                await _context.SaveChangesAsync();
-
-                return new DietResponse(existingDiet);
-            }
-            catch (Exception ex)
-            {
-                return new DietResponse($"An error ocurred while updating Diet: {ex.Message}");
-            }
+            var diet1 = await _context.Diets.FindAsync(id);
+            if (diet1 == null)
+                throw new Exception("No se encontro");
+            diet1.Title = diet.Title;
+            diet1.Description = diet.Description;
+            _context.Entry(diet1).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

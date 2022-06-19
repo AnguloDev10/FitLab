@@ -1,6 +1,6 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
-using FitLab.Dto.Response;
+using FitLab.Dto.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,92 +10,73 @@ using System.Threading.Tasks;
 
 namespace FitLab.Services
 {
-    public class SubscriptionService : ISubscriptionService
+    public class SubscriptionService:ISubscriptionService
     {
         private readonly FitLabDbContext _context;
 
-        SubscriptionService(FitLabDbContext context)
+        public SubscriptionService(FitLabDbContext context)
         {
             _context = context;
         }
 
-        public async Task<SubscriptionResponse> DeleteAsync(int id)
+        public async Task<Subscription> Create(SubscriptionDTO subscription)
         {
-            var existingSubscription = await _context.Subscriptions.FindAsync(id);
+            Subscription newSubscription = new Subscription { Active = subscription.Active,MaxSessions=subscription.MaxSessions,Price = subscription.Price };
+            try
+            {
+                _context.Subscriptions.Add(newSubscription);
+                await _context.SaveChangesAsync();
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Algo salio mal");
+            }
+            return newSubscription;
+        }
+
+        public async Task Delete(int id)
+        {
+            var existingSubscription = _context.Subscriptions.FirstOrDefault(c => c.Id == id);
             if (existingSubscription == null)
-                return new SubscriptionResponse("Subscription not found");
-
+                throw new Exception("No se encontro");
             try
             {
                 _context.Subscriptions.Remove(existingSubscription);
                 await _context.SaveChangesAsync();
-
-                return new SubscriptionResponse(existingSubscription);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new SubscriptionResponse($"An error ocurred while deleting subscription: {ex.Message}");
-            }
-        }
-    
-
-        public async Task<SubscriptionResponse> GetByIdAsync(int id)
-        {
-        var existingSubscription = await _context.Subscriptions.FindAsync(id);
-
-            if (existingSubscription == null)
-            return new SubscriptionResponse("Subscription not found");
-        return new SubscriptionResponse(existingSubscription);
-        }
-
-        public async Task<IEnumerable<Subscription>> ListAsync()
-        {
-            return await _context.Subscriptions.Include(p => p.Profile).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Subscription>> ListByUserIdAsync(int userId)
-        {
-            return await _context.Subscriptions
-                 .Where(p => p. ProfileId == userId)
-                 .Include(p => p.Profile)
-                 .ToListAsync();
-        }
-
-        public async Task<SubscriptionResponse> SaveAsync(Subscription subscription)
-        {
-            try
-            {
-                await _context.Subscriptions.AddAsync(subscription);
-                await _context.SaveChangesAsync();
-
-                return new SubscriptionResponse(subscription);
-            }
-            catch (Exception ex)
-            {
-                return new SubscriptionResponse($"An error ocurred while saving subscription: {ex.Message}");
+                throw new Exception("Hubo un error");
             }
         }
 
-        public async Task<SubscriptionResponse> UpdateAsync(int id, Subscription subscription)
+        public async Task<Subscription> GetByIdAsync(int id)
         {
-            var existingSubscription = await _context.Subscriptions.FindAsync(id);
-            if (existingSubscription == null)
-                return new SubscriptionResponse("Subscription not found");
+            return await _context.Subscriptions.Where(g => g.Id == id).FirstOrDefaultAsync();
+        }
 
-            existingSubscription.MaxSessions = subscription.MaxSessions;
+        public async Task<List<Subscription>> ListAsync()
+        {
+            return await _context.Subscriptions.ToListAsync();
+        }
 
-            try
-            {
-                _context.Subscriptions.Update(existingSubscription);
-                await _context.SaveChangesAsync();
+        public async Task<Subscription> ListByUserIdAsync(int userId)
+        {
+            var session1 = await _context.Subscriptions.Where(g => g.ProfileId == userId).FirstOrDefaultAsync();
+            return session1;
+        }
 
-                return new SubscriptionResponse(existingSubscription);
-            }
-            catch (Exception ex)
-            {
-                return new SubscriptionResponse($"An error ocurred while updating subscription: {ex.Message}");
-            }
+        public async Task Update(int id, SubscriptionDTO subscription)
+        {
+            var subscription1 = await _context.Subscriptions.FindAsync(id);
+            if (subscription1 == null)
+                throw new Exception("No se encontro");
+            subscription1.Active = subscription.Active;
+            subscription1.Price=subscription.Price;
+            subscription1.MaxSessions = subscription.MaxSessions;
+            _context.Entry(subscription1).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

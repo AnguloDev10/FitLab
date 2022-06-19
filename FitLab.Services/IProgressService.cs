@@ -1,4 +1,5 @@
 ﻿using Fitlab.Entities;
+using FitLab.Dto.Request;
 using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace FitLab.Services
 {
-    public interface IProgressService
+    /*public interface IProgressService
     {
-        Task<IEnumerable<Progress>> ListAsync();
-        Task<IEnumerable<Progress>> ListBySessionIdAsync(int sessionId);
+        Task<List<Progress>> ListAsync();
+        Task<List<Progress>> ListBySessionIdAsync(int sessionId);
+        Task<Progress> GetByIdAsync(int id);
+        Task Create(ProgressDTO progress);
+        Task Update(int id, ProgressDTO progress);
 
-        Task<ProgressResponse> GetByIdAsync(int id);
-        Task<ProgressResponse> SaveAsync(Progress progress);
-        Task<ProgressResponse> UpdateAsync(int id, Progress progress);
-
-        Task<ProgressResponse> DeleteAsync(int id);
-    }
+        Task Delete(int id);
+    }*/
 }

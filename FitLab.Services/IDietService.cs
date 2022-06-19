@@ -1,4 +1,5 @@
 ﻿using Fitlab.Entities;
+using FitLab.Dto.Request;
 using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ namespace FitLab.Services
 {
     public interface IDietService
     {
-        Task<IEnumerable<Diet>> ListAsync();
-        Task<IEnumerable<Diet>> ListBySessionIdAsync(int sessionId);
+        Task<List<Diet>> ListAsync();
+        Task<Diet> ListBySessionIdAsync(int sessionId);
 
-        Task<DietResponse> GetByIdAsync(int id);
-        Task<DietResponse> SaveAsync(Diet diet);
-        Task<DietResponse> UpdateAsync(int id, Diet diet);
+        Task<Diet> GetByIdAsync(int id);
+        Task<Diet> Create(DietDTO diet);
+        Task Update(int id, DietDTO diet);
 
-        Task<DietResponse> DeleteAsync(int id);
+        Task Delete(int id);
     }
 }
