@@ -14,6 +14,11 @@ namespace FitLab.Services
     {
         private readonly FitLabDbContext _context;
 
+        public ProfileService(FitLabDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task Create(Profile profile)
         {
             _context.Profiles.Add(profile);

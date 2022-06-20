@@ -30,7 +30,7 @@ namespace FitLab.API.Controller
 
             try
             {
-                _profileService.Create(profile);
+               await  _profileService.Create(profile);
 
                 account.UserName = profile.Email;
                 account.Password = profile.Password;
