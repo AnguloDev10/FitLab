@@ -41,6 +41,11 @@ namespace FitLab.Services
             }
         }
 
+        public async Task<Profile> GetAsync(int id)
+        {
+            return await _context.Profiles.Where(g => g.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Profile>> ListAsync()
         {
             return await _context.Profiles.ToListAsync();

@@ -85,5 +85,17 @@ namespace FitLab.API.Controller
             return await _profileService.ListAsync();
         }
 
+        [HttpGet("{id}", Name = "GetProfile")]
+        public async Task<ActionResult<Profile>> Get(int id)
+        {
+            var profile = await _profileService.GetAsync(id);
+
+            if (profile == null)
+            {
+                return NotFound();
+            }
+            return Ok(profile);
+        }
+
     }
 }
