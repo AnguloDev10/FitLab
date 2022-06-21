@@ -18,6 +18,47 @@ namespace FitLab.API.Controller
         {
             _context = context;
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Profile>> GetAsync(int id)
+        {
+            Profile profile = new Profile();
+            try
+            {
+                profile = await _context.Profiles.Where(p => p.Id == id).FirstAsync();
+                if (profile == null)
+                {
+                    throw new Exception("No se encontró ese perfil");
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { message = "Invalid Username or Password" });
+            }
+            return Ok(profile);
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<Profile>> GetAllAsync()
+        {
+            List<Profile> profile = new List<Profile>();
+            try
+            {
+                profile = await _context.Profiles.ToListAsync();
+                if (profile == null)
+                {
+                    throw new Exception("No se encontró ese perfil");
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { message = "Invalid Username or Password" });
+            }
+            return Ok(profile);
+        }
+
+
         //POST
         [HttpPost]
         public async Task<ActionResult> Post ([FromBody] ProfileDTO request)

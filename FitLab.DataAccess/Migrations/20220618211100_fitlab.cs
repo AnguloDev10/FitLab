@@ -4,16 +4,72 @@
 
 namespace FitLab.DataAccess.Migrations
 {
-    public partial class FinalMigration : Migration
+    public partial class fitlab : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "ProfileId",
-                table: "Complaints",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.CreateTable(
+                name: "Profiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<long>(type: "bigint", nullable: false),
+                    Rol = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profiles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Profiles_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "Profiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Complaints",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProfileId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Complaints", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Complaints_Profiles_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "Profiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Experiences",
@@ -144,6 +200,12 @@ namespace FitLab.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Accounts_ProfileId",
+                table: "Accounts",
+                column: "ProfileId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Complaints_ProfileId",
                 table: "Complaints",
                 column: "ProfileId");
@@ -177,21 +239,15 @@ namespace FitLab.DataAccess.Migrations
                 name: "IX_Subscriptions_ProfileId",
                 table: "Subscriptions",
                 column: "ProfileId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Complaints_Profiles_ProfileId",
-                table: "Complaints",
-                column: "ProfileId",
-                principalTable: "Profiles",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Complaints_Profiles_ProfileId",
-                table: "Complaints");
+            migrationBuilder.DropTable(
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "Complaints");
 
             migrationBuilder.DropTable(
                 name: "Diets");
@@ -211,13 +267,8 @@ namespace FitLab.DataAccess.Migrations
             migrationBuilder.DropTable(
                 name: "Sessions");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Complaints_ProfileId",
-                table: "Complaints");
-
-            migrationBuilder.DropColumn(
-                name: "ProfileId",
-                table: "Complaints");
+            migrationBuilder.DropTable(
+                name: "Profiles");
         }
     }
 }
