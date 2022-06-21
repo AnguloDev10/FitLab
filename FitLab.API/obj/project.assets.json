@@ -734,6 +734,10 @@
       "Fitlab.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
+        },
         "compile": {
           "bin/placeholder/Fitlab.Entities.dll": {}
         },
@@ -2136,24 +2140,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dino\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Ryzen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.API\\FitLab.API.csproj",
+      "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.API\\FitLab.API.csproj",
       "projectName": "FitLab.API",
-      "projectPath": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.API\\FitLab.API.csproj",
-      "packagesPath": "C:\\Users\\Dino\\.nuget\\packages\\",
-      "outputPath": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.API\\obj\\",
+      "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.API\\FitLab.API.csproj",
+      "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+      "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Dino\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2167,17 +2166,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
-              "projectPath": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj"
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj"
             },
-            "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj": {
-              "projectPath": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj"
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Dto\\FitLab.Dto.csproj"
             },
-            "D:\\Ingeniería de Software renovado\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
-              "projectPath": "D:\\Ingeniería de Software renovado\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
             },
-            "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.Services\\FitLab.Services.csproj": {
-              "projectPath": "D:\\Ingeniería de Software renovado\\FitLab\\FitLab.Services\\FitLab.Services.csproj"
+            "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Services\\FitLab.Services.csproj": {
+              "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.Services\\FitLab.Services.csproj"
             }
           }
         }
