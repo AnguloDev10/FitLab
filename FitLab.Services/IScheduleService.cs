@@ -13,10 +13,11 @@ namespace FitLab.Services
     {
         Task<List<Schedule>> ListAsync();
 
-        Task<List<Schedule>> ListByUserIdAsync(int userId);
+        Task<Schedule>ListByUserIdAsync(int userId);
 
         Task<Schedule> GetByIdAsync(int id);
-        Task Create(ScheduleDTO schedule);
+        Task<Schedule> Create(ScheduleDTO schedule);
         Task Update(int id, ScheduleDTO schedule);
+        Task Delete(int id);
     }
 }

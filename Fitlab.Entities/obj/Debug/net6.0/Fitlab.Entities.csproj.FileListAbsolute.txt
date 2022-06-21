@@ -10,3 +10,15 @@ E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fi
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\Fitlab.Entities\obj\Debug\net6.0\refint\Fitlab.Entities.dll
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.pdb
 E:\Noveno ciclo\Ingenieria de Soft\TF\FitLab\Fitlab.Entities\obj\Debug\net6.0\ref\Fitlab.Entities.dll
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\bin\Debug\net6.0\Fitlab.Entities.deps.json
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\bin\Debug\net6.0\Fitlab.Entities.dll
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\bin\Debug\net6.0\Fitlab.Entities.pdb
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.csproj.AssemblyReference.cache
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.AssemblyInfoInputs.cache
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.AssemblyInfo.cs
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.csproj.CoreCompileInputs.cache
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.dll
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\refint\Fitlab.Entities.dll
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\Fitlab.Entities.pdb
+D:\Ingeniería de Software renovado\FitLab\Fitlab.Entities\obj\Debug\net6.0\ref\Fitlab.Entities.dll
