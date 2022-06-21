@@ -21,7 +21,7 @@ namespace FitLab.Services
 
         public async Task<Subscription> Create(SubscriptionDTO subscription)
         {
-            Subscription newSubscription = new Subscription { Active = subscription.Active,MaxSessions=subscription.MaxSessions,Price = subscription.Price };
+            Subscription newSubscription = new Subscription { Active = subscription.Active,MaxSessions=subscription.MaxSessions,Price = subscription.Price,ProfileId = 11 };
             try
             {
                 _context.Subscriptions.Add(newSubscription);
