@@ -14,7 +14,7 @@ namespace FitLab.Services
         Task<List<Experience>> ListAsync();
 
         Task<Experience> GetByIdAsync(int id);
-        Task<Experience> Create(ExperienceDTO complaint);
+        Task<Experience> Create(ExperienceDTO experience);
 
         Task Update(int id, ExperienceDTO experience);
 
