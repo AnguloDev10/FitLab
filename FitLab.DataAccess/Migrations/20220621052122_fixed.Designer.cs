@@ -11,8 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLab.DataAccess.Migrations
 {
     [DbContext(typeof(FitLabDbContext))]
+<<<<<<< HEAD:FitLab.DataAccess/Migrations/20220618211100_fitlab.Designer.cs
+    [Migration("20220618211100_fitlab")]
+    partial class fitlab
+=======
     [Migration("20220621052122_fixed")]
     partial class @fixed
+>>>>>>> b73d207a651dccf5b9988f19b255d53e33982566:FitLab.DataAccess/Migrations/20220621052122_fixed.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

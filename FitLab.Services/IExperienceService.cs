@@ -1,5 +1,4 @@
 ﻿using Fitlab.Entities;
-using FitLab.Dto.Request;
 using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
@@ -11,13 +10,11 @@ namespace FitLab.Services
 {
     public interface IExperienceService
     {
-        Task<List<Experience>> ListAsync();
+        Task<IEnumerable<Experience>> ListAsync();
+        Task<ExperienceResponse> SaveAsync(Experience experience);
 
-        Task<Experience> GetByIdAsync(int id);
-        Task<Experience> Create(ExperienceDTO experience);
+        Task<ExperienceResponse> UpdateAsync(int id, Experience experience);
 
-        Task Update(int id, ExperienceDTO experience);
-
-        Task Delete(int id);
+        Task<ExperienceResponse> DeleteAsync(int id);
     }
 }

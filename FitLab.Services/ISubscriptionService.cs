@@ -1,5 +1,4 @@
 ﻿using Fitlab.Entities;
-using FitLab.Dto.Request;
 using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,12 @@ namespace FitLab.Services
 {
     public interface ISubscriptionService
     {
-        Task<List<Subscription>> ListAsync();
-        Task<Subscription> ListByUserIdAsync(int userId);
+        Task<IEnumerable<Subscription>> ListAsync();
+        Task<IEnumerable<Subscription>> ListByUserIdAsync(int userId);
 
-        Task<Subscription> GetByIdAsync(int id);
-        Task<Subscription> Create(SubscriptionDTO subscription);
-        Task Update(int id, SubscriptionDTO subscription);
-        Task Delete(int id);
+        Task<SubscriptionResponse> GetByIdAsync(int id);
+        Task<SubscriptionResponse> SaveAsync(Subscription subscription);
+        Task<SubscriptionResponse> UpdateAsync(int id, Subscription subscription);
+        Task<SubscriptionResponse> DeleteAsync(int id);
     }
 }

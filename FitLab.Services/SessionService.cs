@@ -1,7 +1,6 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
-using FitLab.Dto.Request;
-using Microsoft.EntityFrameworkCore;
+using FitLab.Dto.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,69 +12,40 @@ namespace FitLab.Services
     public class SessionService : ISessionService
     {
         private readonly FitLabDbContext _context;
+
         public SessionService(FitLabDbContext context)
         {
             _context = context;
         }
 
-        public async Task<Session> Create(SessionDTO session)
+        public Task<SessionResponce> DeleteAsync(int id)
         {
-            Session session2 = new Session { StartAt=session.StartAt,EndAt=session.EndAt,ProfileId=session.UserId,Link=session.Link};
-            try
-            {
-                await _context.Sessions.AddAsync(session2);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw new NotImplementedException();
-            }
-            return session2;
-            
+            throw new NotImplementedException();
         }
 
-        public async Task Delete(int id)
+        public Task<SessionResponce> GetByIdAsync(int id)
         {
-            var existingSession = _context.Sessions.FirstOrDefault(c => c.Id == id);
-            if (existingSession == null)
-                throw new Exception("No se encontro");
-            try
-            {
-                _context.Sessions.Remove(existingSession);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Hubo un error");
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Session> GetByIdAsync(int id)
+        public Task<IEnumerable<Session>> ListAsync()
         {
-            return await _context.Sessions.Where(g => g.Id == id).FirstOrDefaultAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<List<Session>> ListAsync()
+        public Task<IEnumerable<Session>> ListByUserIdAsync(int userId)
         {
-            return await _context.Sessions.ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<Session> ListByUserIdAsync(int userId)
+        public Task<SessionResponce> SaveAsync(Session session)
         {
-            var session1 = await _context.Sessions.Where(g => g.ProfileId == userId).FirstOrDefaultAsync();
-            return session1;
+            throw new NotImplementedException();
         }
 
-        public async Task Update(int id, SessionDTO session)
+        public Task<SessionResponce> UpdateAsync(int id, Session session)
         {
-            var session1 = _context.Sessions.FirstOrDefault(c => c.Id == id);
-            if (session1 == null)
-                throw new Exception("No se encontro");
-            session1.StartAt = session.StartAt;
-            session1.EndAt = session.EndAt;
-            session1.Link = session.Link;
-            _context.Entry(session1).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

@@ -72,6 +72,9 @@ namespace FitLab.DataAccess.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
@@ -269,10 +272,6 @@ namespace FitLab.DataAccess.Migrations
 
                     b.Property<int>("MaxSessions")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");

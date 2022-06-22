@@ -1,6 +1,6 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
-using FitLab.Dto.Request;
+using FitLab.Dto.Response;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,56 +19,67 @@ namespace FitLab.Services
             _context = context;
         }
 
-        public async Task<Experience> Create(ExperienceDTO experience)
+        public async Task<ExperienceResponse> DeleteAsync(int id)
         {
-            Experience experience1 = new Experience { Name = experience.Name, Description = experience.Description, ProfileId = experience.UserId };
-            try
-            {
-                await _context.Experiences.AddAsync(experience1);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw new NotImplementedException();
-            }
-            return experience1;
-        }
+            var existingExperience = await _context.Experiences.FindAsync(id);
 
-        public async Task Delete(int id)
-        {
-            var existingExperience = _context.Experiences.FirstOrDefault(c => c.Id == id);
             if (existingExperience == null)
-                throw new Exception("No se encontro");
+                return new ExperienceResponse("Experience not found");
+
             try
             {
                 _context.Experiences.Remove(existingExperience);
                 await _context.SaveChangesAsync();
+
+                return new ExperienceResponse(existingExperience);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("Hubo un error");
+                return new ExperienceResponse($"An error ocurred while deleting experience:{ex.Message}");
+            }
+
+        }
+
+        public async Task<IEnumerable<Experience>> ListAsync()
+        {
+            return await _context.Experiences.Include(p => p.Profile).ToListAsync();
+        }
+
+        public async Task<ExperienceResponse> SaveAsync(Experience experience)
+        {
+            try
+            {
+                await _context.Experiences.AddAsync(experience);
+                await _context.SaveChangesAsync();
+
+                return new ExperienceResponse(experience);
+            }
+            catch (Exception ex)
+            {
+                return new ExperienceResponse($"An error ocurred while saving experience:{ex.Message}");
             }
         }
 
-        public async Task<Experience> GetByIdAsync(int id)
+        public async Task<ExperienceResponse> UpdateAsync(int id, Experience experience)
         {
-            return await _context.Experiences.Where(g => g.Id == id).FirstOrDefaultAsync();
-        }
+            var existingExperience =  await _context.Experiences.FindAsync(id);
+            if (existingExperience == null)
+                return new ExperienceResponse("Complaint not found");
 
-        public async Task<List<Experience>> ListAsync()
-        {
-            return await _context.Experiences.ToListAsync();
-        }
+            existingExperience.Description = experience.Description;
 
-        public async Task Update(int id, ExperienceDTO experience)
-        {
-            var experience2 = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            if (experience2 == null)
-                throw new Exception("No se encontro");
-            experience2.Name = experience.Name;
-            experience2.Description = experience.Description;
-            _context.Entry(experience2).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Experiences.Update(experience);
+                await _context.SaveChangesAsync();
+
+                return new ExperienceResponse(existingExperience);
+            }
+            catch (Exception ex)
+            {
+                return new ExperienceResponse($"An error ocurred while updating experience: {ex.Message}");
+            }
+
         }
     }
 }

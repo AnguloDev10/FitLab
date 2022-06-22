@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitLab.Dto.Response
 {
-   /* public class ComplaintResponse : BaseResponse<Complaint>
+    public class ComplaintResponse : BaseResponse<Complaint>
     {
         public ComplaintResponse(Complaint resource) : base(resource)
         {
@@ -18,5 +18,5 @@ namespace FitLab.Dto.Response
         {
         }
 
-    }*/
+    }
 }

@@ -17,30 +17,67 @@ namespace FitLab.API.Controller
             _complaintService = complaintService;
         }
 
-        [HttpPost]
-        public async Task Post([FromBody] ComplaintDTO request)
-        {
-            await _complaintService.Create(request);
-        }
         [HttpGet]
-        public async Task<ActionResult<List<Complaint>>> Get()
+        public async Task<IEnumerable<Complaint>> GetAllAsync()
         {
-            return await _complaintService.ListAsync();
+            var complaints = await _complaintService.ListAsync();
+            return complaints;
         }
 
+        
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] ComplaintDTO resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Digite bien los datos");
+
+            var newComplaint = new Complaint { Description= resource.Description,UserId=resource.UserId,Name = resource.Name};
+
+        
+          var result = await _complaintService.SaveAsync(newComplaint);
+          
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok(newComplaint);
+        }
+
+        
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] ComplaintDTO request)
+      
+        public async Task<IActionResult> PutAsync(int id, [FromBody] ComplaintDTO resource)
         {
 
-            await _complaintService.Update(id, request);
+            var result = await _complaintService.UpdateAsync(id, resource);
 
-            return NoContent();
+          //  if (!result.Success)
+             //   return BadRequest(result.Message);
+         //   var complaintResource = _mapper.Map<Complaint, ComplaintResource>(result.Resource);
+            return Ok();
         }
+
+
+        
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _complaintService.Delete(id);
-            return NoContent();
+          //  var result = await _complaintService.DeleteAsync(id);
+          //  if (!result.Success)
+         //   {
+               
+          //  }
+          //  try
+          //  {
+
+        //    }
+          //  catch ()
+          //  {
+         //       return BadRequest(result.Message);
+         //   }
+                
+         //   var complaintResource = _mapper.Map<Complaint, ComplaintResource>(result.Resource);
+            return Ok();
         }
 
 

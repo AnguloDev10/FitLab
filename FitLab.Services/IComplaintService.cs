@@ -11,11 +11,11 @@ namespace FitLab.Services
 {
     public interface IComplaintService
     {
-        Task<List<Complaint>> ListAsync();
-        Task<Complaint> Create(ComplaintDTO complaint);
+        Task<IEnumerable<Complaint>> ListAsync();
+        Task<ComplaintResponse> SaveAsync(Complaint complaint);
 
-        Task Update(int id, ComplaintDTO complaint);
+        Task<ComplaintResponse> UpdateAsync(int id, ComplaintDTO complaint);
 
-        Task Delete(int id);
+       Task<ComplaintResponse> DeleteAsync(int id);
     }
 }
