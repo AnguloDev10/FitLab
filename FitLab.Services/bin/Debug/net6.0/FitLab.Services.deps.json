@@ -505,6 +505,10 @@
         }
       },
       "Fitlab.Entities/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
+        },
         "runtime": {
           "Fitlab.Entities.dll": {}
         }

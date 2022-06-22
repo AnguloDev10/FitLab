@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Fitlab.Entities\Fitlab.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

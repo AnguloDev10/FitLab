@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitLab.API.Controller
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class SessionController:ControllerBase
@@ -14,29 +13,33 @@ namespace FitLab.API.Controller
 
         public SessionController(ISessionService sessionService)
         {
-           this._sessionService = sessionService;
+            _sessionService = sessionService;
         }
-
-
         [HttpPost]
-        public async Task<ActionResult<Session>> PostAsync([FromBody] SessionDTO resource)
+        public async Task Post([FromBody] SessionDTO request)
         {
-            Session newSession = new Session { StartAt=resource.StartAt,EndAt=resource.EndAt,ProfileId=resource.UserId,Link=resource.Link};
-            var result = await _sessionService.SaveAsync(newSession);
-
-            if (!result.Success)
-                return BadRequest(result.Message);
-
-            return Ok(newSession);
+            await _sessionService.Create(request);
         }
-
         [HttpGet]
-        public async Task<IEnumerable<Session>> GetAllAsync()
+        public async Task<ActionResult<List<Session>>> Get()
         {
-            var sessions = await _sessionService.ListAsync();
-            return sessions;
+            return await _sessionService.ListAsync();
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, [FromBody] SessionDTO request)
+        {
+
+            await _sessionService.Update(id, request);
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _sessionService.Delete(id);
+            return NoContent();
+        }
 
     }
 }

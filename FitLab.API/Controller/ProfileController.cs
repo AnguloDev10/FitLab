@@ -1,6 +1,7 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
 using FitLab.Dto.Request;
+using FitLab.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,52 +14,12 @@ namespace FitLab.API.Controller
     public class ProfileController:ControllerBase
     {
         private readonly FitLabDbContext _context;
-     
-        public ProfileController(FitLabDbContext context)
+        private readonly IProfileService _profileService;
+        public ProfileController(FitLabDbContext context, IProfileService profileService)
         {
             _context = context;
+            _profileService = profileService;
         }
-
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Profile>> GetAsync(int id)
-        {
-            Profile profile = new Profile();
-            try
-            {
-                profile = await _context.Profiles.Where(p => p.Id == id).FirstAsync();
-                if (profile == null)
-                {
-                    throw new Exception("No se encontró ese perfil");
-                }
-            }
-            catch (Exception)
-            {
-                return BadRequest(new { message = "Invalid Username or Password" });
-            }
-            return Ok(profile);
-        }
-
-
-        [HttpGet]
-        public async Task<ActionResult<Profile>> GetAllAsync()
-        {
-            List<Profile> profile = new List<Profile>();
-            try
-            {
-                profile = await _context.Profiles.ToListAsync();
-                if (profile == null)
-                {
-                    throw new Exception("No se encontró ese perfil");
-                }
-            }
-            catch (Exception)
-            {
-                return BadRequest(new { message = "Invalid Username or Password" });
-            }
-            return Ok(profile);
-        }
-
-
         //POST
         [HttpPost]
         public async Task<ActionResult> Post ([FromBody] ProfileDTO request)
@@ -69,8 +30,7 @@ namespace FitLab.API.Controller
 
             try
             {
-               _context.Profiles.Add(profile);
-                await _context.SaveChangesAsync();
+               await  _profileService.Create(profile);
 
                 account.UserName = profile.Email;
                 account.Password = profile.Password;
@@ -97,8 +57,7 @@ namespace FitLab.API.Controller
             entity.Name = request.Name;
             entity.Age = request.Age;
             entity.LastName = request.LastName;
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _profileService.Update(entity);
             return Ok(new
             {
                 Id = id
@@ -119,5 +78,24 @@ namespace FitLab.API.Controller
             
             return Ok(entity);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Profile>>> Get()
+        {
+            return await _profileService.ListAsync();
+        }
+
+        [HttpGet("{id}", Name = "GetProfile")]
+        public async Task<ActionResult<Profile>> Get(int id)
+        {
+            var profile = await _profileService.GetAsync(id);
+
+            if (profile == null)
+            {
+                return NotFound();
+            }
+            return Ok(profile);
+        }
+
     }
 }

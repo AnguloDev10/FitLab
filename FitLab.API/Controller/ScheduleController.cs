@@ -9,34 +9,36 @@ namespace FitLab.API.Controller
     [Route("api/[controller]")]
     public class ScheduleController : ControllerBase
     {
-
-        private readonly IScheduleService _scheduleService;
+        private readonly IScheduleService _ScheduleService;
 
         public ScheduleController(IScheduleService scheduleService)
         {
-            _scheduleService = scheduleService;
+            _ScheduleService = scheduleService;
         }
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ScheduleDTO resource)
+        public async Task Post([FromBody] ScheduleDTO request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("rataaaaaaa");
-
-            Schedule newSchedule = new Schedule { StartAt=resource.StartAt,EndAt=resource.EndAt,State=resource.State,ProfileId=resource.UserId};
-            var result = await _scheduleService.SaveAsync(newSchedule);
-
-            if (!result.Success)
-                return BadRequest(result.Message);
-
-            //var scheduleResource = _mapper.Map<Schedule, ScheduleResource>(result.Resource);
-            return Ok(newSchedule);
+            await _ScheduleService.Create(request);
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<Schedule>>> Get()
+        {
+            return await _ScheduleService.ListAsync();
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Schedule>> GetAllAsync()
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, [FromBody] ScheduleDTO request)
         {
-            var schedules = await _scheduleService.ListAsync();
-            return schedules;
+
+            await _ScheduleService.Update(id, request);
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _ScheduleService.Delete(id);
+            return NoContent();
         }
 
     }

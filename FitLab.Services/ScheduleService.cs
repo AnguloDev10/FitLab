@@ -1,6 +1,6 @@
 ﻿using Fitlab.Entities;
 using FitLab.DataAccess;
-using FitLab.Dto.Response;
+using FitLab.Dto.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,61 +18,65 @@ namespace FitLab.Services
             _context = context;
         }
 
-        public async Task<ScheduleResponse> GetByIdAsync(int id)
+        public async Task<Schedule> Create(ScheduleDTO schedule)
         {
-            var existingSchedule = await _context.Schedules.FindAsync(id);
-            if (existingSchedule == null)
-                return new ScheduleResponse("Schedule not found");
-            return new ScheduleResponse(existingSchedule);
-        }
-
-        public async Task<IEnumerable<Schedule>> ListAsync()
-        {
-            return await _context.Schedules.Include(p => p.Profile).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Schedule>> ListByUserIdAsync(int userId)
-        {
-            return await _context.Schedules
-                .Where(p => p.ProfileId == userId)
-                .Include(p => p.Profile)
-                .ToListAsync();
-        }
-
-        public async Task<ScheduleResponse> SaveAsync(Schedule schedule)
-        {
+            Schedule schedule1 = new Schedule { StartAt = schedule.StartAt, EndAt = schedule.EndAt,State = schedule.State, ProfileId = schedule.UserId};
             try
             {
-                await _context.Schedules.AddAsync(schedule);
+                await _context.Schedules.AddAsync(schedule1);
                 await _context.SaveChangesAsync();
-
-                return new ScheduleResponse(schedule);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new ScheduleResponse($"An error ocurred while saving schedule: {ex.Message}");
+                throw new NotImplementedException();
             }
+            return schedule1;
+
         }
 
-        public async Task<ScheduleResponse> UpdateAsync(int id, Schedule schedule)
+        public async Task Delete(int id)
         {
-            var existingSchedule = await _context.Schedules.FindAsync(id); ;
+            var existingSchedule = _context.Schedules.FirstOrDefault(c => c.Id == id);
             if (existingSchedule == null)
-                return new ScheduleResponse("Schedule not found");
-
-            existingSchedule.State = schedule.State;
-
+                throw new Exception("No se encontro");
             try
             {
-                _context.Schedules.Update(existingSchedule);
+                _context.Schedules.Remove(existingSchedule);
                 await _context.SaveChangesAsync();
-
-                return new ScheduleResponse(existingSchedule);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new ScheduleResponse($"An error ocurred while updating schedule: {ex.Message}");
+                throw new Exception("Hubo un error");
             }
         }
+
+        public async Task<Schedule> GetByIdAsync(int id)
+        {
+            return await _context.Schedules.Where(g => g.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Schedule>> ListAsync()
+        {
+            return await _context.Schedules.ToListAsync();
+        }
+
+        public async Task<Schedule> ListByUserIdAsync(int userId)
+        {
+            var schedule3 = await _context.Schedules.Where(g => g.ProfileId == userId).FirstOrDefaultAsync();
+            return schedule3;
+        }
+
+        public async Task Update(int id, ScheduleDTO schedule)
+        {
+            var schedule4 = _context.Schedules.FirstOrDefault(c => c.Id == id);
+            if (schedule4 == null)
+                throw new Exception("No se encontro");
+            schedule4.StartAt = schedule.StartAt;
+            schedule4.EndAt = schedule.EndAt;
+            schedule4.State = schedule.State;
+            _context.Entry(schedule4).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

@@ -1,23 +1,25 @@
-using FitLab.DataAccess;
+﻿using FitLab.DataAccess;
 using FitLab.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
+builder.Services.AddDbContext<FitLabDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
 
-builder.Services.AddDbContext<FitLabDbContext>(options => 
-    {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-    });
-
-
-builder.Services.AddScoped<IScheduleService, ScheduleService>();
-
-
+builder.Services.AddScoped<IComplaintService, ComplaintService>();
+builder.Services.AddScoped<IDietService, DietService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
@@ -37,7 +39,7 @@ app.MapControllers();
 
 app.UseCors(options =>
 {
-    options.AllowAnyOrigin();
+    options.WithOrigins("http://localhost:4200");
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });

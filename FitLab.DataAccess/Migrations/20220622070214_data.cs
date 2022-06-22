@@ -4,14 +4,15 @@
 
 namespace FitLab.DataAccess.Migrations
 {
-    public partial class @fixed : Migration
+    public partial class data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Name",
+                name: "Description",
                 table: "Subscriptions",
-                type: "nvarchar(max)",
+                type: "nvarchar(500)",
+                maxLength: 500,
                 nullable: false,
                 defaultValue: "");
         }
@@ -19,7 +20,7 @@ namespace FitLab.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Name",
+                name: "Description",
                 table: "Subscriptions");
         }
     }

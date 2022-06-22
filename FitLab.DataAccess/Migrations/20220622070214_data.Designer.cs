@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLab.DataAccess.Migrations
 {
     [DbContext(typeof(FitLabDbContext))]
-    [Migration("20220618211100_fitlab")]
-    partial class fitlab
+    [Migration("20220622070214_data")]
+    partial class data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,9 +72,6 @@ namespace FitLab.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -272,8 +269,17 @@ namespace FitLab.DataAccess.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<int>("MaxSessions")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
