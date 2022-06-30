@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {}
+    "D:\\FitLabsDevlopment\\FitLab\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {}
   },
   "projects": {
-    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
+    "D:\\FitLabsDevlopment\\FitLab\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
+        "projectUniqueName": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
         "projectName": "FitLab.DataAccess",
-        "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
-        "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\FitLab.DataAccess\\obj\\",
+        "projectPath": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\FitLab.DataAccess\\FitLab.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Dino\\.nuget\\packages\\",
+        "outputPath": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\FitLab.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dino\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
-                "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
+              "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+                "projectPath": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj"
               }
             }
           }
@@ -78,17 +82,21 @@
         }
       }
     },
-    "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
+    "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
+        "projectUniqueName": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
         "projectName": "Fitlab.Entities",
-        "projectPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
-        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
-        "outputPath": "E:\\Noveno ciclo\\Ingenieria de Soft\\TF\\FitLab\\Fitlab.Entities\\obj\\",
+        "projectPath": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\Fitlab.Entities.csproj",
+        "packagesPath": "C:\\Users\\Dino\\.nuget\\packages\\",
+        "outputPath": "D:\\FitLabsDevlopment\\FitLab\\FitLab\\Fitlab.Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dino\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
